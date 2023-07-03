@@ -3,7 +3,7 @@
 # Script to setup an AOSP Build environment on Ubuntu and Linux Mint
 
 UBUNTU_16_PACKAGES="libesd0-dev"
-UBUNTU_20_PACKAGES="libncurses5 curl python-is-python3"
+UBUNTU_20_PACKAGES="libncurses5 curl"
 DEBIAN_10_PACKAGES="libncurses5"
 DEBIAN_11_PACKAGES="libncurses5"
 PACKAGES=""
@@ -30,8 +30,8 @@ fi
 sudo DEBIAN_FRONTEND=noninteractive \
     apt install \
     git-core gnupg flex bison gperf build-essential zip curl \
-    zlib1g-dev gcc-multilib g++-multilib libc6-dev lib32ncurses5-dev \
-    x11proto-core-dev libx11-dev lib32z1-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip \
+    zlib1g-dev gcc-multilib g++-multilib libc6-dev \
+    x11proto-core-dev libx11-dev ccache libgl1-mesa-dev libxml2-utils xsltproc unzip \
     libssl-dev zip lzip ncurses-dev patch make \
     ${PACKAGES} -y
 
