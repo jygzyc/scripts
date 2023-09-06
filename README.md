@@ -23,3 +23,6 @@ setup -> setup Python Environment / Node.js Environment / Android Build Environm
 wsl -> Windows Subsystem Linux
 zsh -> setup oh-my-zsh basic settings
 
+## Thanks
+
+- [westinyang](https://github.com/westinyang)
