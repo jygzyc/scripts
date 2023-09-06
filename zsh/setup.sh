@@ -10,19 +10,16 @@ command -v zsh > /dev/null || {
 echo "Installing oh-my-zsh"
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-# Clone in powerlevel10k
-git clone https://github.com/romkatv/powerlevel10k.git "$HOME"/.oh-my-zsh/custom/themes/powerlevel10k
+# Change oh-my-zsh theme to ys
+echo "Changing default theme from 'robbyrussell' to 'ys'"
+sed -i -e 's|ZSH_THEME="robbyrussell"|ZSH_THEME="ys"|' "$HOME"/.zshrc
 
-# Change oh-my-zsh theme to powerlevel10k
-echo "Changing default powerlevel10k theme from 'robbyrussell' to 'powerlevel10k/powerlevel10k'"
-sed -i -e 's|ZSH_THEME="robbyrussell"|ZSH_THEME="powerlevel10k/powerlevel10k"|' "$HOME"/.zshrc
+# Install zsh-autosuggestions plugin
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-# Copy p10k config
-echo "Copying powerlevel10k configuration"
-cp -v "$(dirname "$0")"/.p10k.zsh "$HOME"/
+# Install zsh-syntax-highlighting plugin
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 
-# Ensure p10k config is included
-echo "[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh" >> "$HOME/.zshrc"
-
-# Warn user about fonts
-echo "Please ensure the recommended fonts from https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k are installed, and your terminal is using 'MesloLGS NF'"
+# Change Plugin
+echo "Install Plugin"
+sed -i -e 's|plugins=(git)|plugins=(git zsh-autosuggestions zsh-syntax-highlighting)|' "$HOME"/.zshrc
