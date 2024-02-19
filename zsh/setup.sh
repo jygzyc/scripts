@@ -26,6 +26,8 @@ else
   echo "Successfully installed Oh My Zsh from GitHub."
 fi
 
+exit
+
 # Change oh-my-zsh theme to ys
 echo "Changing default theme from 'robbyrussell' to 'ys'"
 sed -i -e 's|ZSH_THEME="robbyrussell"|ZSH_THEME="ys"|' "$HOME"/.zshrc
@@ -39,7 +41,7 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/
 echo "zsh-syntax-highlighting plugin has been installed!"
 
 # 更新 zsh 配置文件，启用这些插件
-sed -i -e 's|plugins=(git)|plugins=(git zsh-autosuggestions zsh-syntax-highlighting)|' "$HOME"/.zshrc
+sed -i -e 's|plugins=(git)|plugins=(git sudo zsh-autosuggestions zsh-syntax-highlighting)|' "$HOME"/.zshrc
 echo "Configuration for these plugins has been added to your .zshrc file."
 
 # 重新载入 zsh 配置
