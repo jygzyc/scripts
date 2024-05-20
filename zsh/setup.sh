@@ -26,7 +26,33 @@ else
   echo "Successfully installed Oh My Zsh from GitHub."
 fi
 
-exit
+function get_char()
+{
+  SAVEDSTTY=`stty -g`
+  stty -echo
+  stty cbreak
+  dd if=/dev/tty bs=1 count=1 2> /dev/null
+  stty -raw
+  stty echo
+  stty $SAVEDSTTY
+}
+
+enable_pause=1
+
+function pause()
+{
+  if [ "x$1" != "x" ]; then
+    echo $1
+  fi
+  if [ $enable_pause -eq 1 ]; then
+    echo "Press any key to continue!"
+    char=`get_char`
+  fi
+}
+
+pause "git clone ok"
+                     
+
 
 # Change oh-my-zsh theme to ys
 echo "Changing default theme from 'robbyrussell' to 'ys'"
@@ -40,13 +66,11 @@ echo "zsh-autosuggestions plugin has been installed!"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 echo "zsh-syntax-highlighting plugin has been installed!"
 
-# 更新 zsh 配置文件，启用这些插件
-sed -i -e 's|plugins=(git)|plugins=(git sudo zsh-autosuggestions zsh-syntax-highlighting)|' "$HOME"/.zshrc
+# Update config
+sed -i -e 's|plugins=(git)|plugins=(git sudo docker zsh-autosuggestions zsh-syntax-highlighting)|' "$HOME"/.zshrc
 echo "Configuration for these plugins has been added to your .zshrc file."
 
-# 重新载入 zsh 配置
-source ~/.zshrc
-echo "Zsh configuration has been reloaded!"
+echo "Please reopen shell"
 
 
 
