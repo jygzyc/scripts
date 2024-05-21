@@ -19,7 +19,9 @@ while true; do
         fi
         echo '# >>> python virtualenv config start >>>' >> ~/.bashrc
         echo 'export WORKON_HOME=$HOME/.virtualenvs' >> ~/.bashrc
-        echo 'source /usr/share/virtualenvwrapper/virtualenvwrapper.sh' >> ~/.bashrc
+        # Prevent Error: /usr/bin/python3: Error while finding spec for 'virtualenvwrapper\
+        # .hook_loader' (<class 'ImportError'>: No module named 'virtualenvwrapper')
+        echo 'export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python' >> ~/.bashrc 
         echo '# <<< python virtualenv config end <<<' >> ~/.bashrc
     elif [ "$SHELL" = "/bin/zsh" ]; then
         if grep -q "# >>> python virtualenv config start >>>" ~/.zshrc; then
@@ -28,6 +30,9 @@ while true; do
         fi
         echo '# >>> python virtualenv config start >>>' >> ~/.zshrc
         echo 'export WORKON_HOME=$HOME/.virtualenvs' >> ~/.zshrc
+        # Prevent Error: /usr/bin/python3: Error while finding spec for 'virtualenvwrapper\
+        # .hook_loader' (<class 'ImportError'>: No module named 'virtualenvwrapper')
+        echo 'export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python' >> ~/.zshrc 
         echo 'source /usr/share/virtualenvwrapper/virtualenvwrapper.sh' >> ~/.zshrc
         echo '# <<< python virtualenv config end <<<' >> ~/.zshrc
     else
