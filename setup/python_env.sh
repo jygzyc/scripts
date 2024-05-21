@@ -11,8 +11,10 @@ fi
 sudo apt update
 sudo apt install python3-virtualenv python3-virtualenvwrapper
 
+current_shell=$(basename "$SHELL")
+
 while true; do
-    if [ "$SHELL" = "/bin/bash" ]; then
+    if [ "$current_shell" = "bash" ]; then
         if grep -q "# >>> python virtualenv config start >>>" ~/.bashrc; then
             echo "Already written to config"
             break
@@ -23,7 +25,7 @@ while true; do
         # .hook_loader' (<class 'ImportError'>: No module named 'virtualenvwrapper')
         echo 'export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python' >> ~/.bashrc 
         echo '# <<< python virtualenv config end <<<' >> ~/.bashrc
-    elif [ "$SHELL" = "/bin/zsh" ]; then
+    elif [ "$current_shell" = "zsh" ]; then
         if grep -q "# >>> python virtualenv config start >>>" ~/.zshrc; then
             echo "Already written to config"
             break
@@ -36,7 +38,7 @@ while true; do
         echo 'source /usr/share/virtualenvwrapper/virtualenvwrapper.sh' >> ~/.zshrc
         echo '# <<< python virtualenv config end <<<' >> ~/.zshrc
     else
-        echo "Not support shell"
+        echo "Not support shell: $current_shell"
         exit 1
     fi
 done
