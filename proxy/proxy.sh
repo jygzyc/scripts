@@ -1,9 +1,9 @@
-#!/bin/sh
-hostip=$(cat /etc/resolv.conf | grep nameserver | awk '{ print $2 }')
-wslip=$(hostname -I | awk '{print $1}')
-port=7890 # change it to your port
+#!/bin/bash
 
-PROXY_HTTP="http://${hostip}:${port}"
+ip=127.0.0.1
+port=7890
+
+PROXY_HTTP="http://${ip}:${port}"
 
 set_proxy(){
     export http_proxy="${PROXY_HTTP}"
@@ -21,9 +21,8 @@ unset_proxy(){
 }
 
 test_setting(){
-    echo "Host ip:" ${hostip}
-    echo "WSL ip:" ${wslip}
-    echo "Current proxy:" $https_proxy
+    echo "IP:" $(ip -4 addr show eth0 | grep -oP '(?<=inet\s)\d+(\.\d+){3}')
+    echo "Current proxy:" ${PROXY_HTTP}
 }
 
 if [ "$1" = "set" ]
