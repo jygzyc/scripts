@@ -19,9 +19,11 @@ Enjoy!
 
 ## Brief explanation of stuff in here
 
+```txt
 setup -> setup Python Environment / Node.js Environment / Android Build Environment.
 wsl -> Windows Subsystem Linux
 zsh -> setup oh-my-zsh basic settings
+```
 
 ## Thanks
 
