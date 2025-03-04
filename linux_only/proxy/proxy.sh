@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ip=127.0.0.1
-port=7890
+port=7890 # default port for clash
 
 PROXY_HTTP="http://${ip}:${port}"
 

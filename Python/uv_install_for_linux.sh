@@ -21,4 +21,3 @@ export PATH=$UV_PYTHON_BIN_DIR:$UV_TOOL_BIN_DIR:$PATH
 # <<< python uv config end <<<
 EOF
 fi
-
